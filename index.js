@@ -22,6 +22,7 @@ try{
     const database = client.db('travelAgency');
     const productCollection = database.collection('products');
     const orderCollection = database.collection('orders');
+    const guideCollection = database.collection('guide');
 
     // all trips GET API
     app.get('/trips',async(req,res)=>{
@@ -80,6 +81,11 @@ res.send(result)
           }
         })
         res.send(result)
+    })
+    // tour guide GET API
+    app.get('/tourGuide',async(req,res)=>{
+      const result = await guideCollection.find({}).toArray();
+      res.send(result)
     })
 }
 finally{
